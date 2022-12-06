@@ -22,7 +22,7 @@ export const installTemplate = async ({
 
   const installFlags = { packageManager, isOnline };
 
-  const dependencies = ["react", "react-dom", "next", "@next/font"];
+  const dependencies = ["react", "react-dom"];
 
   if (mode === "ts") {
     dependencies.push(
