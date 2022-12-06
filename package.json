@@ -2,15 +2,25 @@
   "name": "@cli-nodejs/template-cli",
   "version": "1.0.0",
   "description": "",
-  "bin": "./index.js",
+  "bin": "./dist/index.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^9.4.1"
+    "chalk": "^4.1.2",
+    "commander": "^9.4.1",
+    "figlet": "^1.5.2",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/figlet": "^1.5.5",
+    "@types/node": "^18.11.11",
+    "typescript": "^4.9.3"
   }
 }
