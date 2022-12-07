@@ -1,1 +1,1 @@
-{"version":3,"file":"createTemplateApp.js","sourceRoot":"","sources":["../src/createTemplateApp.ts"],"names":[],"mappings":";;;;AAEO,KAAK,UAAU,iBAAiB,CAAC,MAAW;IACjD,OAAO,CAAC,GAAG,CAAC,QAAQ,EAAE,MAAM,CAAC,CAAC;IAC9B,OAAO,CAAC,GAAG,CAAC,SAAS,EAAE,SAAS,CAAC,CAAC;AACpC,CAAC;AAHD,8CAGC"}
+{"version":3,"file":"createTemplateApp.js","sourceRoot":"","sources":["../src/createTemplateApp.ts"],"names":[],"mappings":";;;AAAO,KAAK,UAAU,iBAAiB,CAAC,MAAW;IACjD,OAAO,CAAC,GAAG,CAAC,QAAQ,EAAE,MAAM,CAAC,CAAC;IAC9B,OAAO,CAAC,GAAG,CAAC,SAAS,EAAE,SAAS,CAAC,CAAC;AACpC,CAAC;AAHD,8CAGC"}
