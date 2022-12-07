@@ -3,7 +3,7 @@
   "version": "1.0.5",
   "description": "",
   "bin": {
-    "create-template-cli": "dist/index.js"
+    "create-template-cli": "./dist/index.js"
   },
   "main": "index.js",
   "scripts": {
