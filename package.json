@@ -1,6 +1,6 @@
 {
   "name": "@cli-nodejs/template-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "bin": {
     "create-template-cli": "dist/index.js"
