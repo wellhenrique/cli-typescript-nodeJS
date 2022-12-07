@@ -65,7 +65,6 @@ async function bootstrap() {
       pathResolved: projectPath,
       template,
     });
-    // await createTemplateApp({ pathResolved: projectPath, template });
   }
 
   await exec();
