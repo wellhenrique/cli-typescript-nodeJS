@@ -1,28 +1,25 @@
 "use strict";
-async function startApp() {
+async function bootstrap() {
     const chalk = require("chalk");
     const { Command } = require("commander");
-    const figlet = require("figlet");
     const prompts = require("prompts");
+    const { createTemplateApp } = require("./createTemplateApp");
     const program = new Command();
     let projectPath = "";
     program
         .version("0.0.1")
-        .description("A CLI for generating ASCII art from text")
+        .description("A CLI for generating template projects")
         .arguments("<project-directory>")
         .usage(`${chalk.green("<project-directory>")} [options]`)
         .action((name) => {
         projectPath = name;
     })
-        .option("--t, --template", `
-    Initialize as template name.
-  `)
+        .option("--t, --template", `Initialize as template name.`)
         .allowUnknownOption()
         .parse(process.argv);
     const options = program.opts();
     let template = options.template;
-    console.log(template, "template");
-    async function run() {
+    async function exec() {
         if (typeof projectPath === "string") {
             projectPath = projectPath.trim();
         }
@@ -58,8 +55,13 @@ async function startApp() {
                 template = res.path.trim();
             }
         }
+        await createTemplateApp({
+            pathResolved: projectPath,
+            template,
+        });
+        // await createTemplateApp({ pathResolved: projectPath, template });
     }
-    await run();
+    await exec();
 }
-startApp();
+bootstrap();
 //# sourceMappingURL=index.js.map

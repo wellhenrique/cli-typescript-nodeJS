@@ -1,3 +1,4 @@
+"use strict";
 // export const installTemplate = async ({
 //   appName,
 //   root,
@@ -8,22 +9,17 @@
 //   eslint,
 // }: any) => {
 //   console.log(chalk.bold(`Using ${packageManager}.`));
-
 //   const packageJson = {
 //     name: appName,
 //     version: "0.1.0",
 //     private: true,
 //   };
-
 //   fs.writeFileSync(
 //     path.join(root, "package.json"),
 //     JSON.stringify(packageJson, null, 2) + os.EOL
 //   );
-
 //   const installFlags = { packageManager, isOnline };
-
 //   const dependencies = ["react", "react-dom"];
-
 //   if (mode === "ts") {
 //     dependencies.push(
 //       "typescript",
@@ -32,7 +28,6 @@
 //       "@types/react-dom"
 //     );
 //   }
-
 //   if (eslint) {
 //     dependencies.push("eslint");
 //   }
@@ -43,7 +38,6 @@
 //       console.log(`- ${chalk.cyan(dependency)}`);
 //     }
 //     console.log();
-
 //     await install(root, dependencies, installFlags);
 //   }
 //   /**
@@ -69,8 +63,8 @@
 //       }
 //     },
 //   });
-
 //   if (!eslint) {
 //     await fs.promises.unlink(path.join(root, ".eslintrc.json"));
 //   }
 // };
+//# sourceMappingURL=index.js.map

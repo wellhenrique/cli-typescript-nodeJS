@@ -2,7 +2,9 @@
   "name": "@cli-nodejs/template-cli",
   "version": "1.0.0",
   "description": "",
-  "bin": "./dist/index.js",
+  "bin": {
+    "create-template-cli": "dist/index.js"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node dist/index.js",

@@ -2,7 +2,7 @@ async function bootstrap() {
   const chalk = require("chalk");
   const { Command } = require("commander");
   const prompts = require("prompts");
-  const createTemplateApp = require("./createTemplateApp");
+  const { createTemplateApp } = require("./createTemplateApp");
 
   const program = new Command();
   let projectPath: string = "";
@@ -15,12 +15,7 @@ async function bootstrap() {
     .action((name: string) => {
       projectPath = name;
     })
-    .option(
-      "--t, --template",
-      `
-    Initialize as template name.
-  `
-    )
+    .option("--t, --template", `Initialize as template name.`)
     .allowUnknownOption()
     .parse(process.argv);
 
@@ -66,7 +61,11 @@ async function bootstrap() {
       }
     }
 
-    await createTemplateApp({ pathResolved: projectPath, template });
+    await createTemplateApp({
+      pathResolved: projectPath,
+      template,
+    });
+    // await createTemplateApp({ pathResolved: projectPath, template });
   }
 
   await exec();

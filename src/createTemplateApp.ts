@@ -1,1 +1,4 @@
-export async function createTemplateApp(params: any) {}
+export async function createTemplateApp(params: any) {
+  console.log("params", params);
+  console.log(__dirname, "dirname");
+}
