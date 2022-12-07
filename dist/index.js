@@ -6,6 +6,7 @@ const prompts = require("prompts");
 const { createTemplateApp } = require("./createTemplateApp");
 const program = new Command();
 let projectPath = "";
+
 program
     .version("0.0.1")
     .description("A CLI for generating template projects")

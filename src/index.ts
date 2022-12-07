@@ -10,13 +10,13 @@ let projectPath: string = "";
 
 program
   .version("0.0.1")
-  .description("A CLI for generating template projects")
+  .description("Uma CLI para gerar modelos de projetos.")
   .arguments("<project-directory>")
   .usage(`${chalk.green("<project-directory>")} [options]`)
   .action((name: string) => {
     projectPath = name;
   })
-  .option("--t, --template", `Initialize as template name.`)
+  .option("--t, --template", `Inicializa um modelo pelo nome.`)
   .allowUnknownOption()
   .parse(process.argv);
 
@@ -32,11 +32,11 @@ async function exec(): Promise<void> {
     const res = await prompts({
       type: "text",
       name: "path",
-      message: "What is your project named?",
-      initial: "my-app",
+      message: "Qual é o nome do seu projeto?",
+      initial: "meu-app",
       validate: (name: string) => {
         if (name) return true;
-        return "Invalid project name: " + name;
+        return "Nome de projeto invalido: " + name;
       },
     });
 
@@ -49,8 +49,8 @@ async function exec(): Promise<void> {
     const res = await prompts({
       type: "text",
       name: "path",
-      message: "What is your template named?",
-      initial: "my-template-typescript",
+      message: "Qual é o nome do modelo que você deseja inicializar?",
+      initial: "top-bar",
       validate: (name: string) => {
         if (name) return true;
         return "Invalid template name: " + name;
