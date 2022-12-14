@@ -32,20 +32,17 @@ program
     .version("0.0.1")
     .description("Uma CLI para gerar modelos de projetos.")
     .description("Cria um projeto com o nome especificado")
-    .command("create <project-name>")
-    .action((projectName) => {
-    if (typeof projectName === "string") {
-        projectPath = projectName.trim();
+    .command("create <project-name> [destination]")
+    .action((projectName, destination) => {
+    if (projectName === "create") {
+        projectPath = destination;
     }
 })
-    .option("--t, --template", `Inicializa um modelo pelo nome.`)
     .allowUnknownOption()
     .parse(process.argv);
 const options = program.opts();
-let template = options.template;
 async function exec() {
     console.log("projectName", projectPath);
-    console.log(projectPath.replace("create ", ""), "replace");
     if (!projectPath) {
         const res = await (0, prompts_1.default)({
             type: "text",

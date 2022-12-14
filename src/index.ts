@@ -1,57 +1,28 @@
 #!/usr/bin/env node
-import chalk from "chalk";
 import { Command } from "commander";
+import path from "path";
 import prompts from "prompts";
+import fs from "fs";
 
 const program = new Command();
 let projectPath: string = "";
-
-// program
-//   .command('create <project-name>')
-//   .description('Create a new project with the specified name')
-//   .action((projectName) => {
-//     // Create a new directory for the project
-//     fs.mkdirSync(projectName);
-
-//     // Create a package.json file for the project
-//     const packageJson = {
-//       name: projectName,
-//       version: '1.0.0',
-//       description: 'A new project created with the CLI',
-//     };
-//     fs.writeFileSync(path.join(projectName, 'package.json'), JSON.stringify(packageJson));
-
-//     // Create a README.md file for the project
-//     const readme = `# ${projectName}
-
-// A new project created with the CLI.`;
-//     fs.writeFileSync(path.join(projectName, 'README.md'), readme);
-
-//     console.log(`Successfully created project ${projectName}`);
-//   });
-
-// program.parse(process.argv);
 
 program
   .version("0.0.1")
   .description("Uma CLI para gerar modelos de projetos.")
   .description("Cria um projeto com o nome especificado")
-  .command("create <project-name>")
-  .action((projectName) => {
-    if (typeof projectName === "string") {
-      projectPath = projectName.trim();
+  .command("create <project-name> [destination]")
+  .action((projectName, destination) => {
+    if (projectName === "create") {
+      projectPath = destination;
     }
   })
-  .option("--t, --template", `Inicializa um modelo pelo nome.`)
   .allowUnknownOption()
   .parse(process.argv);
 
 const options = program.opts();
-let template = options.template;
 
 async function exec(): Promise<void> {
-  console.log("projectName", projectPath);
-  console.log(projectPath.replace("create ", ""), "replace");
   if (!projectPath) {
     const res = await prompts({
       type: "text",
@@ -67,6 +38,25 @@ async function exec(): Promise<void> {
     if (typeof res.path === "string") {
       projectPath = res.path.trim();
     }
+
+    fs.mkdirSync(projectPath);
+
+    // Create a package.json file for the project
+    const packageJson = {
+      name: projectPath,
+      version: "1.0.0",
+      description: "A new project created with the CLI",
+    };
+    fs.writeFileSync(
+      path.join(projectPath, "package.json"),
+      JSON.stringify(packageJson)
+    );
+
+    // Create a README.md file for the project
+    const readme = `# ${projectPath}`;
+    fs.writeFileSync(path.join(projectPath, "README.md"), readme);
+
+    console.log(`Successfully created project ${projectPath}`);
   }
 }
 
