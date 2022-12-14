@@ -20,7 +20,6 @@ program
   .allowUnknownOption()
   .parse(process.argv);
 
-const options = program.opts();
 
 async function exec(): Promise<void> {
   if (!projectPath) {
@@ -40,7 +39,7 @@ async function exec(): Promise<void> {
     }
   }
 
-  if (!projectPath) return;
+  console.log("Criando projeto em: ", projectPath);
   fs.mkdirSync(projectPath);
 
     // Create a package.json file for the project
