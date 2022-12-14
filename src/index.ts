@@ -1,20 +1,46 @@
 #!/usr/bin/env node
-
-const chalk = require("chalk");
-const { Command } = require("commander");
-const prompts = require("prompts");
-const { createTemplateApp } = require("./createTemplateApp");
+import chalk from "chalk";
+import { Command } from "commander";
+import prompts from "prompts";
 
 const program = new Command();
 let projectPath: string = "";
 
+// program
+//   .command('create <project-name>')
+//   .description('Create a new project with the specified name')
+//   .action((projectName) => {
+//     // Create a new directory for the project
+//     fs.mkdirSync(projectName);
+
+//     // Create a package.json file for the project
+//     const packageJson = {
+//       name: projectName,
+//       version: '1.0.0',
+//       description: 'A new project created with the CLI',
+//     };
+//     fs.writeFileSync(path.join(projectName, 'package.json'), JSON.stringify(packageJson));
+
+//     // Create a README.md file for the project
+//     const readme = `# ${projectName}
+
+// A new project created with the CLI.`;
+//     fs.writeFileSync(path.join(projectName, 'README.md'), readme);
+
+//     console.log(`Successfully created project ${projectName}`);
+//   });
+
+// program.parse(process.argv);
+
 program
   .version("0.0.1")
   .description("Uma CLI para gerar modelos de projetos.")
-  .arguments("<project-directory>")
-  .usage(`${chalk.green("<project-directory>")} [options]`)
-  .action((name: string) => {
-    projectPath = name;
+  .description("Cria um projeto com o nome especificado")
+  .command("create <project-name>")
+  .action((projectName) => {
+    if (typeof projectName === "string") {
+      projectPath = projectName.trim();
+    }
   })
   .option("--t, --template", `Inicializa um modelo pelo nome.`)
   .allowUnknownOption()
@@ -24,10 +50,8 @@ const options = program.opts();
 let template = options.template;
 
 async function exec(): Promise<void> {
-  if (typeof projectPath === "string") {
-    projectPath = projectPath.trim();
-  }
-
+  console.log("projectName", projectPath);
+  console.log(projectPath.replace("create ", ""), "replace");
   if (!projectPath) {
     const res = await prompts({
       type: "text",
@@ -44,28 +68,6 @@ async function exec(): Promise<void> {
       projectPath = res.path.trim();
     }
   }
-
-  if (!template) {
-    const res = await prompts({
-      type: "text",
-      name: "path",
-      message: "Qual é o nome do modelo que você deseja inicializar?",
-      initial: "top-bar",
-      validate: (name: string) => {
-        if (name) return true;
-        return "Invalid template name: " + name;
-      },
-    });
-
-    if (typeof res.path === "string") {
-      template = res.path.trim();
-    }
-  }
-
-  await createTemplateApp({
-    pathResolved: projectPath,
-    template,
-  });
 }
 
 exec();
