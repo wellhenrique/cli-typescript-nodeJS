@@ -38,8 +38,10 @@ async function exec(): Promise<void> {
     if (typeof res.path === "string") {
       projectPath = res.path.trim();
     }
+  }
 
-    fs.mkdirSync(projectPath);
+  if (!projectPath) return;
+  fs.mkdirSync(projectPath);
 
     // Create a package.json file for the project
     const packageJson = {
@@ -57,7 +59,6 @@ async function exec(): Promise<void> {
     fs.writeFileSync(path.join(projectPath, "README.md"), readme);
 
     console.log(`Successfully created project ${projectPath}`);
-  }
 }
 
 exec();
