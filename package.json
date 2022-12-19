@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx tsc"
+    "build": "tsc && rm -rf dist/templates && mkdir -p dist/templates && cp -r src/templates dist/templates && rm -rf src/*.js"
   },
   "keywords": [],
   "author": "",
@@ -17,11 +17,14 @@
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^9.4.1",
+    "cpy": "7.3.0",
+    "cross-spawn": "^7.0.3",
     "figlet": "^1.5.2",
     "fs-extra": "^11.1.0",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
     "@types/figlet": "^1.5.5",
     "@types/fs-extra": "^9.0.13",
     "@types/node": "^18.11.11",
